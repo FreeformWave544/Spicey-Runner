@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cd1q46pugwprd"
+path="res://.godot/imported/explosion.wav-882fae7e8d1a05866244569a201c366e.sample"
+
+[deps]
+
+source_file="res://assets/Tilesets/Legacy Collection/Assets/Packs/Sewers pack files/Sounds/explosion.wav"
+dest_files=["res://.godot/imported/explosion.wav-882fae7e8d1a05866244569a201c366e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

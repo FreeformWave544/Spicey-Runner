@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://db75wn0ghb26c"
+path="res://.godot/imported/determination.ogg-2fa3f47bbd082c0e82c0d786873faf0d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Tilesets/Legacy Collection/Assets/Packs/Meta data assets files/sounds/music/determination.ogg"
+dest_files=["res://.godot/imported/determination.ogg-2fa3f47bbd082c0e82c0d786873faf0d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bvx4gqjt02vl8"]
+
+[ext_resource type="Script" uid="uid://lctnxy8mdsfg" path="res://Worlds/runner.gd" id="1_38jmw"]
+[ext_resource type="PackedScene" uid="uid://bvarfca6kjy4n" path="res://Entities/Player/player.tscn" id="2_5td7f"]
+
+[node name="Runner" type="Node2D" unique_id=54058904]
+script = ExtResource("1_38jmw")
+
+[node name="Player" parent="." unique_id=1181452393 instance=ExtResource("2_5td7f")]

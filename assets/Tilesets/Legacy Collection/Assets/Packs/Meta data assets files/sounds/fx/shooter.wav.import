@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://j463leppuon1"
+path="res://.godot/imported/shooter.wav-e7845ecfd114e36dd03e95d8dc9739ea.sample"
+
+[deps]
+
+source_file="res://assets/Tilesets/Legacy Collection/Assets/Packs/Meta data assets files/sounds/fx/shooter.wav"
+dest_files=["res://.godot/imported/shooter.wav-e7845ecfd114e36dd03e95d8dc9739ea.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

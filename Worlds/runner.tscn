@@ -1,6 +1,69 @@
 [gd_scene format=3 uid="uid://bvx4gqjt02vl8"]
 
 [ext_resource type="Script" uid="uid://lctnxy8mdsfg" path="res://Worlds/runner.gd" id="1_38jmw"]
+[ext_resource type="PackedScene" uid="uid://bvarfca6kjy4n" path="res://Entities/Player/player.tscn" id="2_5td7f"]
+[ext_resource type="PackedScene" uid="uid://chpngs4bqkitm" path="res://Worlds/Modules/_1.tscn" id="3_lwn47"]
+[ext_resource type="Texture2D" uid="uid://dsg2w3dlawxvy" path="res://assets/Tilesets/Legacy Collection/Assets/Environments/alien-environment/PNG/layers/background.png" id="4_i16yu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5td7f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lwn47"]
+radius = 60.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwn47"]
+size = Vector2(20, 2500)
 
 [node name="Runner" type="Node2D" unique_id=54058904]
+material = SubResource("ShaderMaterial_5td7f")
 script = ExtResource("1_38jmw")
+modules = Array[PackedScene]([ExtResource("3_lwn47")])
+
+[node name="Player" parent="." unique_id=1181452393 instance=ExtResource("2_5td7f")]
+z_index = 5
+position = Vector2(480, 0)
+scale = Vector2(2, 2)
+
+[node name="ModuleContainer" type="Node2D" parent="." unique_id=2073209843]
+
+[node name="START" type="Area2D" parent="ModuleContainer" unique_id=1918038584]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModuleContainer/START" unique_id=21663909]
+position = Vector2(47, 324)
+shape = SubResource("CircleShape2D_lwn47")
+
+[node name="Score" type="Label" parent="." unique_id=213418563]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Time: "
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1712631091]
+position = Vector2(576, 324)
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+
+[node name="Deathzone" type="Area2D" parent="." unique_id=19087121]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone" unique_id=856356584]
+position = Vector2(-100, 324)
+shape = SubResource("RectangleShape2D_lwn47")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=926016820]
+z_index = -5
+repeat_size = Vector2(710.4, 0)
+autoscroll = Vector2(5, 0)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=909775816]
+scale = Vector2(3.7, 3.7)
+texture = ExtResource("4_i16yu")
+centered = false
+
+[node name="Background2" type="Sprite2D" parent="Parallax2D" unique_id=2086057610]
+position = Vector2(709.99994, 0)
+scale = Vector2(3.7, 3.7)
+texture = ExtResource("4_i16yu")
+centered = false
+
+[connection signal="area_entered" from="Deathzone" to="." method="_on_deathzone_area_entered"]
+[connection signal="body_entered" from="Deathzone" to="." method="_on_deathzone_body_entered"]

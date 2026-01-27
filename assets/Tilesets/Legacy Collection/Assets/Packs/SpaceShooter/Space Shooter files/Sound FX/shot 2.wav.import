@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://be0vd4wut5ivl"
+path="res://.godot/imported/shot 2.wav-9abccb2453ff2f49e60a5d6699ba591e.sample"
+
+[deps]
+
+source_file="res://assets/Tilesets/Legacy Collection/Assets/Packs/SpaceShooter/Space Shooter files/Sound FX/shot 2.wav"
+dest_files=["res://.godot/imported/shot 2.wav-9abccb2453ff2f49e60a5d6699ba591e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

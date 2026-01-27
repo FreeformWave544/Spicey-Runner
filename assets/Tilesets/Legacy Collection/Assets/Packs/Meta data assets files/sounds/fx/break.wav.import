@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dcwmx5jma203j"
+path="res://.godot/imported/break.wav-2c0b96b9dde102e3d9dd36470a912f75.sample"
+
+[deps]
+
+source_file="res://assets/Tilesets/Legacy Collection/Assets/Packs/Meta data assets files/sounds/fx/break.wav"
+dest_files=["res://.godot/imported/break.wav-2c0b96b9dde102e3d9dd36470a912f75.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
