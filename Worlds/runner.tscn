@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bvx4gqjt02vl8"]
+
+[ext_resource type="Script" uid="uid://lctnxy8mdsfg" path="res://Worlds/runner.gd" id="1_38jmw"]
+
+[node name="Runner" type="Node2D" unique_id=54058904]
+script = ExtResource("1_38jmw")
