@@ -11,7 +11,7 @@ size = Vector2(10, 1000)
 [node name="ModuleEnd" type="Area2D" parent="." unique_id=1259911708 groups=["moduleEND"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ModuleEnd" unique_id=134317573]
-position = Vector2(1157, 324)
+position = Vector2(2309, 324)
 shape = SubResource("RectangleShape2D_gjjog")
 
 [node name="TileMap" parent="." unique_id=1389860779 instance=ExtResource("1_gjjog")]

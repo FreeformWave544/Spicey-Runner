@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="SpiceyRunner"
+config/name="SpiceRun"
 run/main_scene="uid://bvx4gqjt02vl8"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"

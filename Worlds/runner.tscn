@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bvarfca6kjy4n" path="res://Entities/Player/player.tscn" id="2_5td7f"]
 [ext_resource type="PackedScene" uid="uid://chpngs4bqkitm" path="res://Worlds/Modules/_1.tscn" id="3_lwn47"]
 [ext_resource type="Texture2D" uid="uid://dsg2w3dlawxvy" path="res://assets/Tilesets/Legacy Collection/Assets/Environments/alien-environment/PNG/layers/background.png" id="4_i16yu"]
+[ext_resource type="Script" uid="uid://6qiv0lsqu42m" path="res://Util/ui.gd" id="5_35wkp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5td7f"]
 
@@ -11,7 +12,10 @@
 radius = 60.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwn47"]
-size = Vector2(20, 2500)
+size = Vector2(20, 1374.0001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35wkp"]
+size = Vector2(1331.97, 124)
 
 [node name="Runner" type="Node2D" unique_id=54058904]
 material = SubResource("ShaderMaterial_5td7f")
@@ -20,7 +24,7 @@ modules = Array[PackedScene]([ExtResource("3_lwn47")])
 
 [node name="Player" parent="." unique_id=1181452393 instance=ExtResource("2_5td7f")]
 z_index = 5
-position = Vector2(480, 0)
+position = Vector2(480, 43)
 scale = Vector2(2, 2)
 
 [node name="ModuleContainer" type="Node2D" parent="." unique_id=2073209843]
@@ -49,6 +53,15 @@ rotation_smoothing_enabled = true
 position = Vector2(-100, 324)
 shape = SubResource("RectangleShape2D_lwn47")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Deathzone" unique_id=1998859596]
+position = Vector2(1252, 324)
+shape = SubResource("RectangleShape2D_lwn47")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Deathzone" unique_id=1001780438]
+position = Vector2(576, 772)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_lwn47")
+
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=926016820]
 z_index = -5
 repeat_size = Vector2(710.4, 0)
@@ -64,6 +77,32 @@ position = Vector2(709.99994, 0)
 scale = Vector2(3.7, 3.7)
 texture = ExtResource("4_i16yu")
 centered = false
+
+[node name="UI" type="Control" parent="." unique_id=230403866]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("5_35wkp")
+
+[node name="GameOver" type="CenterContainer" parent="UI" unique_id=1928929045]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/GameOver" unique_id=1290677961]
+layout_mode = 2
+
+[node name="Roof" type="StaticBody2D" parent="." unique_id=819096865]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Roof" unique_id=928190650]
+position = Vector2(576, -62)
+shape = SubResource("RectangleShape2D_35wkp")
 
 [connection signal="area_entered" from="Deathzone" to="." method="_on_deathzone_area_entered"]
 [connection signal="body_entered" from="Deathzone" to="." method="_on_deathzone_body_entered"]

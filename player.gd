@@ -29,13 +29,16 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump") and is_on_ceiling():
 			velocity.y = -JUMP_VELOCITY
 		velocity.y -= gravity * delta if not is_on_ceiling() else 0.0
-
-	if input_dir > 0:
-		level.ScrollDirection = 1
-	elif input_dir < 0:
-		level.ScrollDirection = -1
-	if input_dir != 0:
-		sprite.flip_h = input_dir < 0
+	if get_parent().invert:
+		if is_on_floor_only():
+			rotation = 0.0
+		elif is_on_wall_only():
+			var normal = get_wall_normal()
+			if normal.x > 0: rotation = 90.0
+			elif normal.x < 0: rotation = -90.0
+	if input_dir > 0: level.ScrollDirection = 1
+	elif input_dir < 0: level.ScrollDirection = -1
+	if input_dir != 0: sprite.flip_h = input_dir < 0
 
 	previous_floor = currentFloor
 	move_and_slide()
@@ -52,8 +55,8 @@ func spin(invert: bool) -> void:
 	velocity.y = -100
 
 	var target := deg_to_rad(22) if invert else 0.0
-	while not is_equal_approx(sprite.rotation, target):
-		sprite.rotation = lerp(sprite.rotation, target, 0.2)
+	while not is_equal_approx(rotation, target):
+		rotation = lerp(rotation, target, 0.2)
 		await get_tree().process_frame
 
 	get_parent().canSpin = true

@@ -24,13 +24,9 @@ func _ready() -> void:
 	BaseScroll = scroll_speed
 	module_container = $ModuleContainer
 	player = find_child("Player")
-
 	await get_tree().create_timer(0.1).timeout
 	_init_pool()
-
-	if name != "Level":
-		return
-
+	if name != "Level": return
 	spawn_modules(modules_to_keep_ahead, 666)
 	$ModuleContainer/START.queue_free()
 
@@ -38,35 +34,28 @@ func _init_pool() -> void:
 	if modules.is_empty():
 		push_warning("No modules assigned.")
 		return
-
 	for i in range(POOL_SIZE):
-		var m:Node2D = modules.pick_random().instantiate()
-		m.visible = false
-		m.process_mode = Node.PROCESS_MODE_DISABLED
-		module_container.add_child(m)
-		module_pool.append(m)
+		var module: Node2D = modules.pick_random().instantiate()
+		module.visible = false
+		module.process_mode = Node.PROCESS_MODE_DISABLED
+		module_container.add_child(module)
+		module_pool.append(module)
 
 func spawn_modules(count:int = 1, start_offset := 0.0) -> void:
-	if module_pool.is_empty():
-		_init_pool()
-
-	if modules_in == 0 and start_offset > 0.0:
-		last_module_end_x = start_offset
-
+	if module_pool.is_empty(): _init_pool()
+	if modules_in == 0 and start_offset > 0.0: last_module_end_x = start_offset
 	for i in range(count):
-		if module_pool.is_empty():
-			return
-
-		var m = module_pool.pop_back()
-		m.visible = true
-		m.process_mode = Node.PROCESS_MODE_INHERIT
-		m.position.x = last_module_end_x
+		if module_pool.is_empty(): return
+		var module = module_pool.pop_back()
+		module.visible = true
+		module.process_mode = Node.PROCESS_MODE_INHERIT
+		module.position.x = last_module_end_x
 		last_module_end_x += module_offset
 
-func _recycle_module(m:Node2D) -> void:
-	m.visible = false
-	m.process_mode = Node.PROCESS_MODE_DISABLED
-	module_pool.append(m)
+func _recycle_module(module:Node2D) -> void:
+	module.visible = false
+	module.process_mode = Node.PROCESS_MODE_DISABLED
+	module_pool.append(module)
 
 func _process(delta:float) -> void:
 	if not player or not player.canMove: return
@@ -84,33 +73,29 @@ func togglePlane() -> void:
 	invert = !invert
 	player.spin(invert)
 
-func _on_deathzone_area_entered(a:Area2D) -> void:
-	if a.name == "START":
+func _on_deathzone_area_entered(area:Area2D) -> void:
+	if area.name == "START":
 		spawn_modules(modules_to_keep_ahead, 666)
-		a.queue_free()
-	elif a.is_in_group("moduleEND"):
+		area.queue_free()
+	elif area.is_in_group("moduleEND"):
 		modules_in += 1
 		if modules_in >= modules_to_keep_ahead:
 			modules_in = 0
 			spawn_modules(modules_to_keep_ahead)
-
-		var p := a.get_parent()
+		var p := area.get_parent()
 		_recycle_module(p)
 		spawn_modules(1)
 
-func _on_deathzone_body_entered(b:Node2D)->void:
-	if b is Player:
-		$UI/GameOver/Label.text="Score: %.2f\nDistance: %.2f\nTime: %.2f"%[(world_scroll_x+0.5*(world_scroll_x/timeSurvived))/50.0,world_scroll_x,timeSurvived]
+func _on_deathzone_body_entered(body:Node2D)->void:
+	if body is Player:
+		$UI/GameOver/Label.text = "Score: %.2f\nDistance: %.2f\nTime: %.2f" % [(world_scroll_x + 0.5 * (world_scroll_x/timeSurvived)) / 50.0, world_scroll_x, timeSurvived]
 		$UI.lose()
 
-func _on_area_2d_body_entered(b:Node2D)->void:
-	if b is Player: Transition.fade_to_scene("res://UI/MainMenu.tscn")
-
-func screen_shake(t:=0.5,i:=0.5):
-	var timer:=get_tree().create_timer(t)
+func screen_shake(time := 0.5,intensity := 0.5):
+	var timer := get_tree().create_timer(time)
 	while timer.time_left>0.0:
-		$Camera2D.offset=Vector2(randf_range(-5,5)*i,randf_range(-5,5)*i)
-		$Camera2D.rotation_degrees=randf_range(-2,2)*i
+		$Camera2D.offset = Vector2(randf_range(-5,5) * intensity, randf_range(-5,5) * intensity)
+		$Camera2D.rotation_degrees = randf_range(-2,2) * intensity
 		if !is_inside_tree():return
 		await get_tree().process_frame
 	$Camera2D.rotation_degrees=0

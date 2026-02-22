@@ -245,6 +245,7 @@ scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_01a4e")
 animation = &"TechManJumpShoot"
 autoplay = "Wolf"
+frame = 1
 
 [node name="RayCast2D" type="RayCast2D" parent="Sprite" unique_id=1228375603]
 position = Vector2(0, 10)
